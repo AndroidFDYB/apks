@@ -147,8 +147,10 @@ void myhook(JNIEnv* env,void* func,const char* classname,const char* methodname,
     jclass a=env->FindClass(classname);
     jmethodID b=env->GetMethodID(a,methodname, shoty);
     __int64 a1= reinterpret_cast<long long int>(b);
-    nativ[ns]=*(_QWORD *)(a1 + 4);
-    jump[ns]=*((long *)a1 + 5);
+    __android_log_print(6, "r0ysue", "method address %llx ", reinterpret_cast<long long>(b));
+    // https://aosp.app/android-12.1.0_r1/xref/art/runtime/art_method.h#access_flags_
+//    nativ[ns]=*(_QWORD *)(a1 + 4);
+//    jump[ns]=*((long *)a1 + 5);
     *(_QWORD *)(a1 + 4)= *(_QWORD *)(a1 + 4)^0x80100 ;
 
     // 6dc5a00000  + 2236848 =
@@ -170,7 +172,7 @@ void myhook(JNIEnv* env,void* func,const char* classname,const char* methodname,
 //    *((long *)a1 + 5)= reinterpret_cast<long>((char *) startr +so - 0x25000);
     *((long *)a1 + 5)= reinterpret_cast<long>((char *) startr +so - 0xb6000);
     *(_QWORD *)(a1 + 32)= reinterpret_cast<uint64>(func);
-//    env->RegisterNatives(a,getMethods,1);
+    env->RegisterNatives(a,getMethods,1);
 
 
 
