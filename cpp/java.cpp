@@ -43,9 +43,17 @@ void myhook(JNIEnv* env,void* func,const char* classname,const char* methodname,
     };
     if(flag==0) {
         char line[1024];
-
+        // 6287
         int *end;
         int n = 1;
+        /**
+         sailfish:/ # cat /proc/6287/maps | grep libart.so
+            712b000000-712b12d000 r--p 00000000 fd:00 341                            /apex/com.android.runtime/lib64/libart.so
+            712b12d000-712b5b9000 --xp 0012d000 fd:00 341                            /apex/com.android.runtime/lib64/libart.so
+            712b5b9000-712b5bc000 rw-p 005b9000 fd:00 341                            /apex/com.android.runtime/lib64/libart.so
+            712b5bc000-712b5cd000 r--p 005bc000 fd:00 341                            /apex/com.android.runtime/lib64/libart.so
+
+         */
         FILE *fp = fopen("/proc/self/maps", "r");
         while (fgets(line, sizeof(line), fp)) {
             if (strstr(line, "libart.so")) {

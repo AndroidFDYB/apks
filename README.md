@@ -13,6 +13,7 @@
                                        art_quick_to_interceptor_bridge , 这是汇编代码
       5.
 
-
+system/apex/com.android.runtime.debug/lib64/libart.so
+运行态： /apex/com.android.runtime/lib64/libart.so
  # 相关链接
  [Beginner](https://github.com/r0ysue/FridaAndrioidNativeBeginnersBook)
