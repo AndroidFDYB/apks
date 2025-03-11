@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "apks"
 include(":app")
-include(":native")
+include(":native_lib")

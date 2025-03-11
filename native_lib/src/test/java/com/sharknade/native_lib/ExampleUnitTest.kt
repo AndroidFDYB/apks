@@ -1,4 +1,4 @@
-package com.sharknade.anative
+package com.sharknade.native_lib
 
 import org.junit.Test
 

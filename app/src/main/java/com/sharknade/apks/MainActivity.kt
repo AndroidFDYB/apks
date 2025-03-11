@@ -1,6 +1,7 @@
 package com.sharknade.apks
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sharknade.apks.hook.Shark
 import com.sharknade.apks.ui.theme.ApksTheme
+import com.sharknade.native_lib.NativeLib
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +28,9 @@ class MainActivity : ComponentActivity() {
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                             .clickable {
+                                Log.e("shark",NativeLib().stringFromJNI())
                                 Shark.eat()
+
                             }
                     )
                 }
