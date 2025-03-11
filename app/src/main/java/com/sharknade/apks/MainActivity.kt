@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -24,15 +25,35 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApksTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                            .clickable {
-                                Log.e("shark",NativeLib().stringFromJNI())
-                                Shark.eat()
+                    Column {
+                        Greeting(
+                            name = "Original Call for Eat",
+                            modifier = Modifier
+                                .padding(innerPadding)
+                                .clickable {
+                                    Shark.eat()
 
-                            }
-                    )
+                                }
+                        )
+                        Greeting(
+                            name = "doHook",
+                            modifier = Modifier
+                                .padding(innerPadding)
+                                .clickable {
+                                    Log.e("shark", NativeLib().stringFromJNI())
+                                }
+                        )
+
+                        Greeting(
+                            name = "call again",
+                            modifier = Modifier
+                                .padding(innerPadding)
+                                .clickable {
+                                    Shark.eat()
+                                }
+                        )
+                    }
+
                 }
             }
         }
