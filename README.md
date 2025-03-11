@@ -11,4 +11,8 @@
                                        GetJniDlSymLookupStub() ---> ark_quick_jni_trampoline
                               -c--> interceptor     quick_interceptor_bridge
                                        art_quick_to_interceptor_bridge , 这是汇编代码
-      5. 
+      5.
+
+
+ # 相关链接
+ [Beginner](https://github.com/r0ysue/FridaAndrioidNativeBeginnersBook)
