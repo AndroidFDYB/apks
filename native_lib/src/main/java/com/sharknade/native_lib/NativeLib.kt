@@ -8,6 +8,8 @@ class NativeLib {
      */
     external fun stringFromJNI(): String
 
+    external fun sum(a:Int , b : Int):String
+
     companion object {
         // Used to load the 'native_lib' library on application startup.
         init {

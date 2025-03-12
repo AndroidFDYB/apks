@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                             .clickable {
-                                Log.e("shark",NativeLib().stringFromJNI())
+                                Log.e("shark",NativeLib().sum(10,20))
                                 Shark.eat()
 
                             }

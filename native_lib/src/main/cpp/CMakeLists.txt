@@ -5,33 +5,36 @@
 # Sets the minimum CMake version required for this project.
 cmake_minimum_required(VERSION 3.22.1)
 
-# Declares the project name. The project name can be accessed via ${ PROJECT_NAME},
-# Since this is the top level CMakeLists.txt, the project name is also accessible
-# with ${CMAKE_PROJECT_NAME} (both CMake variables are in-sync within the top level
-# build script scope).
 project("native_lib")
 
-# Creates and names a library, sets it as either STATIC
-# or SHARED, and provides the relative paths to its source code.
-# You can define multiple libraries, and CMake builds them for you.
-# Gradle automatically packages shared libraries with your APK.
-#
-# In this top level CMakeLists.txt, ${CMAKE_PROJECT_NAME} is used to define
-# the target library name; in the sub-module's CMakeLists.txt, ${PROJECT_NAME}
-# is preferred for the same purpose.
-#
-# In order to load a library into your app from Java/Kotlin, you must call
-# System.loadLibrary() and pass the name of the library defined here;
-# for GameActivity/NativeActivity derived applications, the same library name must be
-# used in the AndroidManifest.xml file.
+# 创建一个add的共享库
+set(LIB_ADD add)
+message("================================")
+message(${LIB_ADD})
+add_library(${LIB_ADD} SHARED native_add.cpp)
+# 新增输出目录配置
+set_target_properties(${LIB_ADD} PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY "D:/sharknade/android_workspace/apks/so"  # 指定绝对路径
+#        ARCHIVE_OUTPUT_DIRECTORY "d:/sharknade/frida/libs"   # 静态库目录（可选）
+)
+
+target_link_libraries(${LIB_ADD})
+
 add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
         native_lib.cpp)
 
-# Specifies libraries CMake should link to your target library. You
-# can link libraries from various origins, such as libraries defined in this
-# build script, prebuilt third-party libraries, or Android system libraries.
+# 新增输出目录配置
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY "D:/sharknade/android_workspace/apks/so"  # 指定绝对路径
+        #        ARCHIVE_OUTPUT_DIRECTORY "d:/sharknade/frida/libs"   # 静态库目录（可选）
+)
+
 target_link_libraries(${CMAKE_PROJECT_NAME}
         # List libraries link to the target library
         android
-        log)
+        log
+        ${LIB_ADD}
+)
+
+
