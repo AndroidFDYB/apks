@@ -37,4 +37,20 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         ${LIB_ADD}
 )
 
+set(EXE_MAIN main)
+add_library(${EXE_MAIN} EXECUTABLE EXCLUDE_FROM_ALL
+        main.c
+)
+
+set_target_properties(${EXE_MAIN} PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY "D:/sharknade/android_workspace/apks/so"  # 指定绝对路径
+        #        ARCHIVE_OUTPUT_DIRECTORY "d:/sharknade/frida/libs"   # 静态库目录（可选）
+)
+
+target_link_libraries(${EXE_MAIN}
+        ${CMAKE_PROJECT_NAME}
+        ${LIB_ADD}
+)
+
+
 
