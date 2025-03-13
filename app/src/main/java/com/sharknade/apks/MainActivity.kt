@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .padding(innerPadding)
                                 .clickable {
-                                    Log.e("shark", NativeLib().stringFromJNI())
+                                    Log.e("shark", NativeLib().stringFromJNI(Shark))
                                 }
                         )
 

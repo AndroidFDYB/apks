@@ -12,10 +12,10 @@ extern "C" {
     JNIEXPORT jstring JNICALL
     Java_com_sharknade_native_1lib_NativeLib_stringFromJNI(
             JNIEnv* env,
-            jobject /* this */) {
+            jobject j,jobject  sk/* this */) {
         std::string hello = "Hello from C++";
     //    dumpArtAddress();
-        myhook(env, reinterpret_cast<void *>(newAdd), "com/sharknade/apks/hook/Shark", "eat", "()V", 0);
+        myhook(env, sk,reinterpret_cast<void *>(newAdd), "com/sharknade/apks/hook/Shark", "eat", "()V", 0);
         return env->NewStringUTF(hello.c_str());
     }
 
