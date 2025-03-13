@@ -1,0 +1,6 @@
+execve("./art_analyzer", ["./art_analyzer"], 0x7fdb856dd0 /* 24 vars */) = 0
+faccessat(AT_FDCWD, "/dev/urandom", R_OK) = -1 ENOENT (No such file or directory) (INJECTED)
+openat(AT_FDCWD, "/dev/null", O_RDWR)   = -1 ENOENT (No such file or directory) (INJECTED)
+openat(AT_FDCWD, "/sys/fs/selinux/null", O_RDWR) = -1 ENOENT (No such file or directory) (INJECTED)
+--- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0xa0} ---
++++ killed by SIGSEGV +++

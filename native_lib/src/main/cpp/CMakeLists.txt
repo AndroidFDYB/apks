@@ -38,18 +38,40 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 )
 
 set(EXE_MAIN main)
-add_library(${EXE_MAIN} EXECUTABLE EXCLUDE_FROM_ALL
-        main.c
+add_executable(${EXE_MAIN} # EXCLUDE_FROM_ALL
+        main.cpp
 )
 
-set_target_properties(${EXE_MAIN} PROPERTIES
-        LIBRARY_OUTPUT_DIRECTORY "D:/sharknade/android_workspace/apks/so"  # 指定绝对路径
-        #        ARCHIVE_OUTPUT_DIRECTORY "d:/sharknade/frida/libs"   # 静态库目录（可选）
-)
+#set_target_properties(${EXE_MAIN} PROPERTIES
+#        LIBRARY_OUTPUT_DIRECTORY "D:/sharknade/android_workspace/apks/so"  # 指定绝对路径
+#        #        ARCHIVE_OUTPUT_DIRECTORY "d:/sharknade/frida/libs"   # 静态库目录（可选）
+#)
+
+#
+## 包含目录（根据实际ART安装路径调整）
+#target_include_directories(${EXE_MAIN} PRIVATE
+#        d:/sharknade/frida/art
+#        d:/sharknade/frida/art/runtime
+#        d:/sharknade/frida/prebuilts/ndk/current/sources/cxx-stl/system/include
+#)
+#
+## 编译选项
+#target_compile_options(${EXE_MAIN} PRIVATE
+#        -DART_TARGET
+#        -Wno-non-virtual-dtor
+#        -Wno-unused-command-line-argument
+#)
 
 target_link_libraries(${EXE_MAIN}
         ${CMAKE_PROJECT_NAME}
         ${LIB_ADD}
+)
+
+
+# 设置输出目录
+set_target_properties(${EXE_MAIN} PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "D:/sharknade/android_workspace/apks/so"
+        OUTPUT_NAME "art_analyzer"
 )
 
 
